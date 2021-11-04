@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Actor>
+
+
+<div class="container my-5">
+
+    <a class="btn btn-success" asp-action="Create">Add Actor</a>
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Id)</th>
+                <th>@Html.DisplayNameFor(model => model.ProfilePictureUrl)</th>
+                <th>@Html.DisplayNameFor(model => model.FullName)</th>
+                <th>@Html.DisplayNameFor(model => model.Bio)</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@Html.DisplayFor(modelItem => item.Id)</th>
+                    <td><img src="@Html.DisplayFor(model => item.ProfilePictureUrl)" style="width:100px" alt="Image" /></td>
+                    <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Bio)</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary"> <img src="~/Images/view.png" /> Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+
+
+
+                    </td>
+                </tr>
+            }
+
+            </tbody>
+    </table>
+
+
+
+
+</div> 

@@ -1,0 +1,59 @@
+﻿@model Actor
+
+
+<div class="container mt-5">
+    <div class="row m-auto">
+
+
+
+        <div class="col-md-8 col-sm-8 col-10">
+            <form asp-action="Edit">
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly"></div>
+
+                </div>
+                <div class="form-group text-center">
+                    <img id="profilePicPreview" width="200" />
+                </div>
+                <input asp-for="Id" id="Id" type="text" class="form-control" hidden>
+
+                <div class="form-group">
+                    <label asp-for="ProfilePictureUrl">Profile Picture Url</label>
+                    <input asp-for="ProfilePictureUrl" id="ProfilePictureUrl" type="text" class="form-control">
+                    <span asp-validation-for="ProfilePictureUrl"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FullName">Full Name</label>
+                    <input asp-for="FullName" type="text" class="form-control">
+                    <span asp-validation-for="FullName"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Bio">Bio</label>
+                    <input asp-for="Bio" type="text" class="form-control">
+                    <span asp-validation-for="Bio"></span>
+                </div>
+
+                <button type="submit" value="Edit" class="btn btn-info">Submit</button>
+                <a asp-action="Index" class="btn btn-outline-success">Show All</a>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById('profilePicPreview');
+            output.src = $("#ProfilePictureUrl").val();
+        })
+        $("#ProfilePictureUrl").on("change", function () {
+            var output = document.getElementById('profilePicPreview');
+            output.src = $(this).val();
+        })
+    </script>
+}

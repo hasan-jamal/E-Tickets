@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Movie>
+@{
+    ViewData["Title"] = "List of Movies";
+}
+
+
+<div class="container mb-5">
+    <div class="row ">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="d-flex justify-content-between p-3 text-white" style="background: #05A499 ">
+
+                        <h6>
+                            @item.Name
+                        </h6>
+
+                        <img src="~/Images/edit.png" width="30" height="30" />
+
+
+
+                    </div>
+                    <div class="d-flex">
+                        <div>
+                            <img src="@item.ImageUrl" style="width:200px;height:100%" />
+                        </div>
+                        <div class="text-center p-2">
+                            <p><b>this is the @item.Name</b></p>
+                            <p> <b>Description @item.Description</b></p>
+                            <p><b>Cinema : @item.Cinema.Name </b>  </p>
+                            <p><b>Category : @item.MovieCategorey</b>  </p>
+                            <p><b>Start Date : @item.StartDate.ToString("dd MMM yy") </b>  </p>
+                            <p><b>End Date : @item.EndDate.ToString("dd MMM yy") </b>  </p>
+                            <b>Status : </b>
+                            @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                            {
+                                <span class="bg-info text-white p-1" style="border-radius:20px;font-size:.8rem"> AVAILABLE </span>
+                            }
+                            else if (DateTime.Now > item.EndDate)
+                            {
+                                <span class="bg-info text-white p-1" style="border-radius: 20px; font-size: .8rem"> EXPIRED </span>
+
+                            }
+                            else
+                            {
+                                <span class="bg-info text-white p-1" style="border-radius: 20px; font-size: .8rem">UPCOMING  </span>
+
+                            }
+
+
+
+                        </div>
+
+                    </div>
+                    <div class="d-flex  p-2 text-white" style="background: #05A499 ">
+                        <a href="#" class="mx-2 btn btn-success"><img src="~/Images/shopping-cart.png" alt="Cart" /> Add To Cart ( Price : @item.Price $) </a>
+                        <a href="#" class="mx-2 btn btn-info"><img src="~/Images/view.png" /> Details</a>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+
+</div>
